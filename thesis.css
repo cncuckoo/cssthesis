@@ -1,0 +1,355 @@
+del { background: red }
+ins { background: green }
+
+html { margin: 0; padding: 0; /* for chinese text display clearly */font-size:63%}
+
+body {
+  font-family: "Georgia", serif;
+  color: black;
+  background: white;
+  counter-reset: table-no figure-no chapter;
+/* for chinese text display clearly*/
+  font-size:1.4em;
+  line-height:1.5;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+  font-family: "Georgia", serif;
+  page-break-after: avoid;
+}
+
+/* lists */
+
+ul, ol { 
+  margin: 0.5em 0em 0.5em 1.5em;
+  padding: 0;
+}
+
+li {
+  margin: 0.2em 0;
+  padding: 0;
+}
+
+dt {
+  font-weight: bold;
+  margin-top: 0.4em;
+}
+
+/* generated content */
+
+.fn:before {
+  content: " (";
+}
+
+.fn:after {
+  content: ")";
+}
+
+.fn { font-style: italic }
+
+div.toc h2:before {
+  display: none;
+}
+
+div.toc h3.chapter:before {
+  content: "Chapter " counter(chapter-toc) ": "; 
+}
+
+div.toc h3.chapter {
+  counter-increment: chapter-toc;
+}
+
+div.chapter h1:before {
+  content: "第" counter(chapter) "章 "; 
+}
+
+div.chapter h1 {
+  counter-increment: chapter;
+  counter-reset: section;
+}
+
+div.chapter h2:before {
+  content: counter(chapter) "." counter(section) " ";
+}
+
+div.chapter h2 {
+  counter-increment: section;
+  counter-reset: subsection;
+}
+
+div.chapter h3:before {
+  content: counter(chapter) "." counter(section) "." counter(subsection) " "; 
+}
+
+div.chapter h3 {
+  counter-increment: subsection;
+  counter-reset: subsubsection;
+}
+
+div.chapter h4:before {
+  content: counter(chapter) "." counter(section) "." counter(subsection) "." counter(subsubsection) " "; 
+}
+
+div.chapter h4 {
+  counter-increment: subsubsection;
+}
+
+pre {
+  margin: 0.2em 0;
+  padding: 0.4em;
+  font-family: courier, monospace;
+  font-size: 0.85em;
+  background: #EEE;
+  page-break-inside: avoid;
+}
+
+h1 {
+  margin: 0.5em 0 0.3em 0;
+  padding: 0.3em 0;
+  font-size: 1.5em;
+}
+
+h2 {
+  margin: 1.3em 0 0.2em 0;
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+h3 {
+  margin: 1.3em 0 0.2em 0;
+  font-size: 1.1em;
+}
+
+h4 {
+  margin: 1.3em 0 0.2em 0;
+  font-size: 1em;
+  font-style: italic;
+}
+
+p {
+  margin: 0.4em 0;
+  padding: 0;
+}
+
+img.page { width: 100% }
+
+blockquote, blockquote pre {
+  margin: 0.2em 0;
+  padding: 0.8em;
+  background: #EEE;
+
+}
+
+blockquote em {
+  font-style: normal;
+}
+
+blockquote cite {
+  display: block;
+  /* align the source to right is chinese's convention */
+  text-align:right;
+}
+
+/* links */
+
+a:link, a:active, a:visited {
+  color: #00E;
+  background: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+/*  color: #529;*/
+  color: #AAF;
+  background: transparent;
+}
+
+a.term {
+  font-weight: bold;
+}
+
+
+/* tables */
+
+table { 
+  page-break-inside: avoid;
+  margin: 2em 0;
+  border-collapse: collapse;
+  empty-cells: show;
+  border: 1px solid black;
+}
+
+td, th {
+  vertical-align: top;
+  border: 1px solid black;
+  padding: 0.2em;
+}
+
+
+table th { text-align: left; font-family: "Gill Sans", sans-serif }
+
+
+
+td.property, td.value { font-family: monospace }
+
+table.properties {
+  font-size: 80%;
+}
+
+table.properties td, table.properties th  {
+  line-height: 120%;
+}
+
+td.no { background: white /*#fdd*/ }
+td.yes { background: #EEE /*#dfd*/ }
+td.maybe { background: #FEF /*#dfd*/ }
+td.unknown { background: white /*#fdd*/ }
+
+
+/* th { background: #DDD } */
+
+/* table captions */
+
+div.table p.caption { 
+  font-style: italic;
+  margin: 0.8em 0;
+  counter-increment: table-no;
+}
+
+div.table p.caption::before { 
+  content: "Table " counter(table-no) ": ";
+  font-weight: bold;
+}
+
+
+
+
+div.figure {
+  display: block;
+  padding: 0.4em 0;
+  max-width: 100%;
+  counter-increment: figure-no;
+}
+
+div.figure p.caption::before {
+  content: "Figure " counter(figure-no) ": ";
+  font-weight: bold;
+}  
+  
+
+
+/* inline */
+
+abbr { text-decoration: none }
+
+span.title {
+  font-style: italic;
+}
+
+p.new {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border-left: 1pt solid black;
+  border-right: 1pt solid black;
+}
+
+p.author {
+  margin-left: 70%
+}
+
+html { background: black; }
+body {
+  margin: 0px 0px 10px 190px;
+  padding: 0px;
+}
+
+#menu {
+  display: block;
+  position: absolute;
+}
+
+body>#menu {  /* this selector is a hack to hide "fixed" from IE */
+  position: fixed; 
+}
+
+#menu { top: 0px; left: 0px; width: 170px;  }
+#menu { padding: 10px 10px 10px;  color: white; background: #000; font-size: 12px; font-weight: bold; font-family: sans-serif  }
+#menu ul { margin: 0px; padding: 0px }
+#menu ul ul { margin-left: 10px;  }
+#menu li { list-style-type: none; margin: 6px 0; padding: 0 }
+#menu a { color: #AAF }
+
+
+div.titlepage, div.imprint, div.abstract, div.dedication, div.toc, div.lot, div.lof, div.foreword, div.uchapter, div.chapter, div.glossary, div.references, div.colophon, div.appendix { 
+  padding: 20px;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+}
+
+div.bottom { clear: both; }
+
+/* character-level stuff */
+
+q {
+  font-style: italic;
+/*  background: #FFA; */
+}
+
+
+code.property, code.value, code.property, code.selector, code.element, code.attribute {
+  color: green;
+  background: #EEE;
+}
+
+code.value {
+  color: red;
+  background: #EEE;
+}
+
+code.pseudo-class, code.property, code.selector, code.element {
+  color: blue;
+  background: #EEE;
+}
+
+code.selector, code.element {
+  color: black;
+  background: #EEE;
+}
+
+em.title {
+  font-style: italic;
+}
+
+.question { 
+  color: red
+}
+
+.pubtitle {
+  font-style: italic;
+}
+
+.print-only {
+  display: none;
+}
+
+q::before {
+  content: "\201C";
+}
+
+q::after {
+  content: "\201D";
+}
+
+.print-only { display: none }
+
+img { max-width: 100% }
+
+div.imprint p { line-height: 1.3; text-indent: 0; margin: 0 0 1.3em }
+
+
+@media projection {
+  body { font-size: 9px }
+}
+
+#logo { float: right; width: 30%; margin-right: 10% }
